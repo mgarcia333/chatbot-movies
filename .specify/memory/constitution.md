@@ -1,50 +1,48 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report
+  Version change: 1.0.0 → 1.1.0
+  Added sections: Supabase Integration, AI (Gemini) Standards, PWA Compliance
+  Modified: Technology Standards updated with CineRoulette stack
+  Follow-up TODOs: Ensure Gemini API keys are handled via .env only
+-->
+
+# CineRoulette Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Vue 3 Composition API First (NON-NEGOTIABLE)
+All components and composables MUST be written using the Vue 3 Composition API with `<script setup>` syntax.
+Components MUST be single-responsibility and visual (not containing heavy business logic).
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. TypeScript Strict Mode
+All source files MUST use TypeScript. `strict: true` MUST be enabled. No `any` types allowed.
+API responses from Gemini and Supabase MUST be typed using interfaces/types.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. SDD - Specification-Driven Development (STRICT)
+The developer AI MUST NOT invent architectural patterns or feature creep.
+Implementation MUST strictly follow `spec.md`. Any change to logic or endpoints REQUIRES a spec update first.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Backend-Only AI Orchestration
+All calls to Gemini API (or movie metadata providers) MUST be executed from the Nuxt server backend (`/server/api`).
+Never expose API keys or perform heavy AI processing on the client.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. PWA & Mobile-First Design
+The UI MUST be responsive and follow PWA best practices (Service Workers, manifest, offline-ready shell).
+Lighthouse Performance & PWA scores MUST be ≥ 90.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technology Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- **Frontend**: Nuxt 3, Vue 3, Tailwind CSS
+- **PWA**: `@vite-pwa/nuxt`
+- **Database**: Supabase (PostgreSQL) + `@nuxtjs/supabase`
+- **AI**: Gemini Pro API (via server routes)
+- **Validation**: Zod for all API input/output validation
+- **Formatting**: Prettier + ESLint
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+1. Update `spec.md` with every logic/entity change.
+2. Run `/speckit.plan` to update technical documents.
+3. Implementation MUST be task-by-task as defined in `tasks.md`.
+4. Testing: Vitest for server logic, Playwright for the Chatbot flow.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
-
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2026-03-12 | **Last Amended**: 2026-03-12
