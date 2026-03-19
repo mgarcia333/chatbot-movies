@@ -1,75 +1,54 @@
-# Nuxt Minimal Starter
+# CineRoulette: Tu Sumiller de Cine Personal
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a elegir qué película ver cuando la indecisión ataca. Utiliza Inteligencia Artificial (Google Gemini) para guiarte a través de una breve entrevista y ofrecerte la recomendación perfecta.
 
-## Setup
+## Características Principales
 
-Make sure to install dependencies:
+- **Chatbot Inteligente**: Entrevista dinámica de 2-3 preguntas para entender tus gustos actuales.
+- **Recomendaciones Basadas en Rationale**: No solo te decimos qué ver, sino _por qué_ te gustará.
+- **Historial Persistente**: Guarda tus películas aceptadas en tu perfil (vía Supabase).
+- **Experiencia Móvil Nativa**: Instalable como PWA para acceso rápido.
+- **Interfaz Premium**: Diseño minimalista con efecto glassmorphism y modo claro/oscuro.
 
-```bash
-# npm
-npm install
+## Stack Tecnológico
 
-# pnpm
-pnpm install
+- **Frontend**: [Nuxt 3](https://nuxt.com/) + [Tailwind CSS](https://tailwindcss.com/)
+- **Backend**: [Nitro Server Routes](https://nitro.unjs.io/)
+- **IA**: [Google Gemini 2.5 Flash](https://ai.google.dev/)
+- **Base de Datos**: [Supabase](https://supabase.com/) (PostgreSQL & Auth)
+- **Despliegue/PWA**: `@vite-pwa/nuxt`
 
-# yarn
-yarn install
+## Instalación y Configuración
 
-# bun
-bun install
-```
+1. **Clonar el repositorio**:
 
-## Development Server
+   ```bash
+   git clone https://github.com/mgarcia333/chatbot-movies.git
+   cd chatbot-movies
+   ```
 
-Start the development server on `http://localhost:3000`:
+2. **Instalar dependencias**:
 
-```bash
-# npm
-npm run dev
+   ```bash
+   npm install
+   ```
 
-# pnpm
-pnpm dev
+3. **Variables de entorno**:
+   Copia el archivo `.env.example` a `.env` y configura tus credenciales:
+   - `GEMINI_API_KEY`: Tu clave de Google AI Studio.
+   - `SUPABASE_URL` / `SUPABASE_KEY`: Tus credenciales de Supabase.
 
-# yarn
-yarn dev
+4. **Ejecutar en desarrollo**:
+   ```bash
+   npm run dev
+   ```
 
-# bun
-bun run dev
-```
+---
 
-## Production
+## Metodología de Desarrollo
 
-Build the application for production:
+Este proyecto ha sido desarrollado siguiendo la metodología **Specification-Driven Development (SDD)**, utilizando la herramienta **Speckit**. Todo el proceso está documentado en los archivos `.md` de la carpeta `specs` y en el archivo `PROCESS.md`.
 
-```bash
-# npm
-npm run build
+---
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Producido por Moisés Garcia como proyecto final para M06 - Desarrollo Web en Entorno Cliente.

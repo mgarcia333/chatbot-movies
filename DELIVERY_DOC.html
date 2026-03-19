@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineRoulette - Documentació del Projecte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+
+        @media print {
+            .markdown-body {
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        .header-print {
+            text-align: right;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            color: #666;
+        }
+
+        .cta-box {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #2ea44f;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="markdown-body">
+        <div class="no-print cta-box">
+            <p>Aquest fitxer està preparat per a ser convertit a PDF.</p>
+            <button onclick="window.print()" class="btn">Imprimir / Guardar com PDF</button>
+        </div>
+
+        <div class="header-print">
+            Treball Final M06 - Moisés Garcia
+        </div>
+
+        <h1>Documentació de l'Aplicació: CineRoulette</h1>
+
+        <p><strong>Projecte:</strong> CineRoulette - AI-Driven Movie PWA<br>
+        <strong>Autoria:</strong> Moisés Garcia<br>
+        <strong>Assignatura:</strong> M06 - Desenvolupament Web en Entorn Client<br>
+        <strong>Data:</strong> 19 de Març de 2026</p>
+
+        <hr>
+
+        <h2>1. Explicació de les funcionalitats de l’aplicació</h2>
+
+        <h3>Descripció general</h3>
+        <p>CineRoulette és una aplicació web progressiva (PWA) que actua com un "sumiller de cinema" personal. L'objectiu principal és resoldre el problema de la "paràlisi per anàlisi" que pateixen els usuaris davant els vasts catàlegs de les plataformes de streaming actuals.</p>
+
+        <h3>Principals característiques</h3>
+        <ul>
+            <li><strong>Entrevista Dinàmica</strong>: L'usuari no navega per una llista, sinó que respon a 2-3 preguntes clau fetes per una IA (Google Gemini). Aquestes preguntes estan dissenyades per filtrar l'estat d'ànim i les preferències del moment.</li>
+            <li><strong>Recomendacions Personalitzades</strong>: Utilitzant el model Gemini 2.5 Flash, el sistema genera una recomanació única basada en les respostes de l'usuari.</li>
+            <li><strong>Rationale (Raonament)</strong>: Cada pel·lícula ve acompanyada d'una explicació de per què li agradarà a l'usuari segons el que ha dit durant el xat.</li>
+            <li><strong>Persistència amb Supabase</strong>: Les pel·lícules que l'usuari decideix "acceptar" es guarden en un historial personalitzat a la base de dades.</li>
+            <li><strong>Progressive Web App (PWA)</strong>: L'aplicació es pot instal·lar en el telèfon mòbil, funciona sense barra de navegació del navegador i ofereix una experiència fluida.</li>
+        </ul>
+
+        <h3>Casos d'ús</h3>
+        <ol>
+            <li><strong>Descobriment ràpid</strong>: Un usuari arriba a casa cansat i no vol buscar durant 20 minuts. Obre CineRoulette, respon que vol "acció" i "algo curt", i rep una recomanació instantània.</li>
+            <li><strong>Historial de visualització</strong>: L'usuari guarda la pel·lícula recomanada per veure-la més tard, assegurant-se que no perd la selecció feta per la IA.</li>
+        </ol>
+
+        <hr>
+
+        <h2>2. Captures de l’aplicació</h2>
+
+        <p><em>(Aquestes captures mostren el flux des de l'inici del xat fins a la recepció de la fitxa de la pel·lícula)</em></p>
+
+        <img src="./docs/screenshots/01-landing.png" alt="Pantalla Principal" style="max-width: 100%; border: 1px solid #ddd; margin-bottom: 20px;">
+        <p><em>Pantalla d'inici on el sumiller inicia la conversa.</em></p>
+
+        <img src="./docs/screenshots/02-chatting.png" alt="Interacció" style="max-width: 100%; border: 1px solid #ddd; margin-bottom: 20px;">
+        <p><em>Exemple d'usuari responent a les preguntes de la IA.</em></p>
+
+        <img src="./docs/screenshots/03-recommendation.png" alt="Recomanació" style="max-width: 100%; border: 1px solid #ddd; margin-bottom: 20px;">
+        <p><em>Fitxa de pel·lícula generada amb el motiu de la recomanació i botons d'acció.</em></p>
+
+        <hr>
+
+        <h2>3. Procés d’especificació (Spec-Driven Development)</h2>
+
+        <p>Per al desenvolupament d'aquest projecte s'ha utilitzat una metodologia <strong>Spec-Driven Development (SDD)</strong> mitjançant l'ús de l'agent <strong>Speckit</strong>. Aquest procés assegura que cada línia de codi respon a un requeriment prèviament definit.</p>
+
+        <h3>a. Foundations (Fonaments)</h3>
+        <p>En aquesta fase es va definir el nucli del projecte:</p>
+        <ul>
+            <li><strong>Objectiu</strong>: Crear un recomanador de cinema que no s'assembli a un e-commerce tradicional.</li>
+            <li><strong>Abast</strong>: MVP que inclou xat amb IA, renderitzat de targetes i persistència de dades.</li>
+            <li><strong>Context</strong>: Projecte Nuxt 3 amb integració directa de APIs d'IA i DB as a Service (Supabase).</li>
+        </ul>
+
+        <h3>b. Specify (Especificar)</h3>
+        <p>Utilitzant el comandament <code>/speckit.specify</code>, es van definir els requeriments funcionals (FR) i els criteris d'èxit (SC):</p>
+        <ul>
+            <li><strong>FR-001</strong>: Implementació com a PWA.</li>
+            <li><strong>FR-004</strong>: Ús de Supabase per a <code>movies</code> i <code>user_history</code>.</li>
+            <li><strong>SC-001</strong>: Temps de resposta de la IA inferior a 3 segons.</li>
+        </ul>
+
+        <h3>c. Planning (Planificació)</h3>
+        <p>L'organització de tasques es va realitzar en tres fases principals (reflectides en el fitxer <code>tasks.md</code>):</p>
+        <ol>
+            <li><strong>Fase 0</strong>: Setup del projecte i configuració de dependències.</li>
+            <li><strong>Fase 1</strong>: Desenvolupament del backend (Nitro + Gemini).</li>
+            <li><strong>Fase 2</strong>: Frontend i interfície de xat amb Tailwind.</li>
+        </ol>
+
+        <hr>
+
+        <h2>4. Annex amb fitxers rellevants</h2>
+
+        <h3>Fitxer: tasks.md</h3>
+        <pre><code># Tasks: CineRoulette Implementation
+
+## Phase 1: Database &amp; AI Backend
+- [x] Implement Gemini AI utility in `server/utils/ai.ts`
+- [x] Create API Endpoint `/server/api/chat.post.ts`
+
+## Phase 2: Frontend &amp; Chat Interface
+- [x] Build `ChatMessage` component
+- [x] Build `MovieCard` component
+- [x] Implement Chat page layout</code></pre>
+
+        <h3>Fitxer: SPEC.md (Fragment)</h3>
+        <blockquote>
+            <p><strong>User Story 1 - AI-Guided Movie Discovery</strong><br>
+            As a visitor, I want to interact with a chatbot that asks me 2-3 targeted questions, so that I can receive a personalized movie recommendation without browsing a catalog.</p>
+        </blockquote>
+
+        <hr>
+        <p style="text-align: center; color: #666; font-size: 0.8em;">© 2026 CineRoulette Project. All rights reserved.</p>
+    </div>
+</body>
+</html>
