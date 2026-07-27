@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     }))
   ]
 
-  const groq = useGroq()
+  const groq = useGroq(event)
 
   let responseText: string
   try {

@@ -25,8 +25,8 @@ export type GroqMessage = {
   content: string
 }
 
-export const useGroq = () => {
-  const config = useRuntimeConfig()
+export const useGroq = (event: any) => {
+  const apiKey = event.context.cloudflare?.env?.GROQ_API_KEY ?? useRuntimeConfig(event).groqApiKey
 
   return {
     async sendMessage(messages: GroqMessage[]) {
@@ -35,7 +35,7 @@ export const useGroq = () => {
         {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${config.groqApiKey}`
+            Authorization: `Bearer ${apiKey}`
           },
           body: {
             model: GROQ_MODEL,
