@@ -2,9 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  runtimeConfig: {
-    geminiApiKey: process.env.GEMINI_API_KEY
-  },
   modules: [
     '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',

@@ -1,7 +1,7 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import { GoogleGenAI } from '@google/genai'
 
 export const MOVIE_PROMPT = `
-Eres un "Sumiller de Cine" experto en recomendaciones personalizadas. 
+Eres un "Sumiller de Cine" experto en recomendaciones personalizadas.
 Interactúa con el usuario de forma breve y simpática.
 Si necesitas más información, genera una pregunta dinámica (máximo 2-3).
 Si tienes suficiente información, devuelve una recomendación de película estructurada.
@@ -20,15 +20,6 @@ DEBES responder EXCLUSIVAMENTE en formato JSON con la siguiente estructura:
 }
 `
 
-export const useGemini = () => {
-  const config = useRuntimeConfig()
-  const genAI = new GoogleGenerativeAI(config.geminiApiKey)
-  
-  return genAI.getGenerativeModel({ 
-    model: 'gemini-2.5-flash',
-    systemInstruction: MOVIE_PROMPT,
-    generationConfig: {
-      responseMimeType: 'application/json'
-    }
-  })
-}
+export const GEMINI_MODEL = 'gemini-2.5-flash'
+
+export const useGemini = () => new GoogleGenAI({})
