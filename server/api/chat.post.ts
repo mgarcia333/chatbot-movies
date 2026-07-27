@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { MOVIE_PROMPT, useGroq, type GroqMessage } from '../utils/ai'
+import { useTmdb } from '../utils/tmdb'
 
 const RequestSchema = z.object({
   messages: z.array(z.object({
@@ -37,9 +38,10 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  let parsed: any
   try {
     const cleanJson = responseText.replace(/```json|```/g, '').trim()
-    return JSON.parse(cleanJson)
+    parsed = JSON.parse(cleanJson)
   } catch (e) {
     throw createError({
       statusCode: 500,
@@ -47,4 +49,14 @@ export default defineEventHandler(async (event) => {
       data: responseText
     })
   }
+
+  if (parsed.movie) {
+    const tmdb = useTmdb(event)
+    parsed.movie.poster_url = await tmdb.findPosterUrl(
+      parsed.movie.poster_search_term || parsed.movie.title,
+      parsed.movie.year
+    )
+  }
+
+  return parsed
 })
