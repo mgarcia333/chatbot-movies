@@ -6,7 +6,7 @@ const props = defineProps<{
   loading?: boolean
 }>()
 
-const { supabase } = useSupabaseClient()
+const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
 const handleAction = async (type: 'acceptance' | 'rejection', feedback?: string) => {
