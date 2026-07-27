@@ -35,8 +35,8 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 
 3. **Variables de entorno**:
    Copia el archivo `.env.example` a `.env` y configura tus credenciales:
-   - `GEMINI_API_KEY`: Tu clave de Google AI Studio.
    - `SUPABASE_URL` / `SUPABASE_KEY`: Tus credenciales de Supabase.
+   - El acceso a Gemini se realiza a través de Netlify AI Gateway, que inyecta las credenciales automáticamente al desplegar (no hace falta configurar una `GEMINI_API_KEY` propia).
 
 4. **Ejecutar en desarrollo**:
    ```bash
