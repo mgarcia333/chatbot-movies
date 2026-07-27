@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     strict: true
   },
   pwa: {
+    workbox: {
+      navigateFallback: undefined
+    },
     manifest: {
       name: 'CineRoulette',
       short_name: 'CineRoulette',
