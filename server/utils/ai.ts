@@ -1,7 +1,5 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
-
 export const MOVIE_PROMPT = `
-Eres un "Sumiller de Cine" experto en recomendaciones personalizadas. 
+Eres un "Sumiller de Cine" experto en recomendaciones personalizadas.
 Interactúa con el usuario de forma breve y simpática.
 Si necesitas más información, genera una pregunta dinámica (máximo 2-3).
 Si tienes suficiente información, devuelve una recomendación de película estructurada.
@@ -20,15 +18,34 @@ DEBES responder EXCLUSIVAMENTE en formato JSON con la siguiente estructura:
 }
 `
 
-export const useGemini = () => {
+const GROQ_MODEL = 'llama-3.3-70b-versatile'
+
+export type GroqMessage = {
+  role: 'system' | 'user' | 'assistant'
+  content: string
+}
+
+export const useGroq = () => {
   const config = useRuntimeConfig()
-  const genAI = new GoogleGenerativeAI(config.geminiApiKey)
-  
-  return genAI.getGenerativeModel({ 
-    model: 'gemini-2.5-flash',
-    systemInstruction: MOVIE_PROMPT,
-    generationConfig: {
-      responseMimeType: 'application/json'
+
+  return {
+    async sendMessage(messages: GroqMessage[]) {
+      const response = await $fetch<{ choices: { message: { content: string } }[] }>(
+        'https://api.groq.com/openai/v1/chat/completions',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${config.groqApiKey}`
+          },
+          body: {
+            model: GROQ_MODEL,
+            messages,
+            response_format: { type: 'json_object' }
+          }
+        }
+      )
+
+      return response.choices[0].message.content
     }
-  })
+  }
 }

@@ -13,7 +13,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "@netlify/blobs": "^8.2.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vite-pwa/nuxt": "^1.1.1",

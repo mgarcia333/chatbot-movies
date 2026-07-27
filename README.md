@@ -1,6 +1,6 @@
 # CineRoulette: Tu Sumiller de Cine Personal
 
-CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a elegir qué película ver cuando la indecisión ataca. Utiliza Inteligencia Artificial (Google Gemini) para guiarte a través de una breve entrevista y ofrecerte la recomendación perfecta.
+CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a elegir qué película ver cuando la indecisión ataca. Utiliza Inteligencia Artificial (Groq) para guiarte a través de una breve entrevista y ofrecerte la recomendación perfecta.
 
 ## Características Principales
 
@@ -14,7 +14,7 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 
 - **Frontend**: [Nuxt 3](https://nuxt.com/) + [Tailwind CSS](https://tailwindcss.com/)
 - **Backend**: [Nitro Server Routes](https://nitro.unjs.io/)
-- **IA**: [Google Gemini 2.5 Flash](https://ai.google.dev/)
+- **IA**: [Groq](https://groq.com/) (Llama 3.3 70B)
 - **Almacenamiento**: [Netlify Blobs](https://docs.netlify.com/build/data-and-storage/netlify-blobs/) (historial por dispositivo)
 - **Despliegue/PWA**: `@vite-pwa/nuxt`
 
@@ -35,7 +35,7 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 
 3. **Variables de entorno**:
    Copia el archivo `.env.example` a `.env` y configura tus credenciales:
-   - `GEMINI_API_KEY`: Tu clave de Google AI Studio.
+   - `GROQ_API_KEY`: Tu clave de [Groq Console](https://console.groq.com/keys).
 
 4. **Ejecutar en desarrollo**:
    ```bash
