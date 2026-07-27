@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "@nuxtjs/supabase": "^2.0.4",
+    "@netlify/blobs": "^8.2.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vite-pwa/nuxt": "^1.1.1",
     "nuxt": "^4.3.1",

@@ -6,13 +6,9 @@ export default defineNuxtConfig({
     geminiApiKey: process.env.GEMINI_API_KEY
   },
   modules: [
-    '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt'
   ],
-  supabase: {
-    redirect: false // Adjust based on auth requirements
-  },
   typescript: {
     strict: true
   },

@@ -6,38 +6,21 @@ const props = defineProps<{
   loading?: boolean
 }>()
 
-const supabase = useSupabaseClient()
-const user = useSupabaseUser()
-
-const handleAction = async (type: 'acceptance' | 'rejection', feedback?: string) => {
-  if (!user.value) {
-    return alert('Por favor, inicia sesión para guardar películas.')
-  }
-  
+const handleAction = async (type: 'acceptance' | 'rejection') => {
   try {
-    // 1. First ensure movie is in cache (Phase 3 logic)
-    const { data: movieData } = await supabase
-      .from('movies')
-      .upsert({
-        title: props.movie?.title,
-        synopsis: props.movie?.synopsis,
-        // poster_url mapping would go here
-      }, { onConflict: 'title' })
-      .select()
-      .single()
-
-    // 2. Save to user history
-    await supabase.from('user_history').insert({
-      user_id: user.value.id,
-      movie_id: movieData?.id,
-      interaction_type: type,
-      ai_feedback: feedback || '',
-      ai_rationale: props.movie?.rationale
+    await $fetch('/api/history', {
+      method: 'POST',
+      body: {
+        deviceId: useDeviceId(),
+        action: type,
+        movie: props.movie
+      }
     })
 
     alert(type === 'acceptance' ? '¡Guardada en tu historial!' : 'Entendido, buscaremos otra.')
   } catch (err) {
     console.error('Error saving action:', err)
+    alert('No se pudo guardar el historial, pero ¡disfruta la película!')
   }
 }
 </script>

@@ -6,7 +6,7 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 
 - **Chatbot Inteligente**: Entrevista dinámica de 2-3 preguntas para entender tus gustos actuales.
 - **Recomendaciones Basadas en Rationale**: No solo te decimos qué ver, sino _por qué_ te gustará.
-- **Historial Persistente**: Guarda tus películas aceptadas en tu perfil (vía Supabase).
+- **Historial Persistente**: Guarda tus películas aceptadas por dispositivo (vía Netlify Blobs).
 - **Experiencia Móvil Nativa**: Instalable como PWA para acceso rápido.
 - **Interfaz Premium**: Diseño minimalista con efecto glassmorphism y modo claro/oscuro.
 
@@ -15,7 +15,7 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 - **Frontend**: [Nuxt 3](https://nuxt.com/) + [Tailwind CSS](https://tailwindcss.com/)
 - **Backend**: [Nitro Server Routes](https://nitro.unjs.io/)
 - **IA**: [Google Gemini 2.5 Flash](https://ai.google.dev/)
-- **Base de Datos**: [Supabase](https://supabase.com/) (PostgreSQL & Auth)
+- **Almacenamiento**: [Netlify Blobs](https://docs.netlify.com/build/data-and-storage/netlify-blobs/) (historial por dispositivo)
 - **Despliegue/PWA**: `@vite-pwa/nuxt`
 
 ## Instalación y Configuración
@@ -36,7 +36,6 @@ CineRoulette es una **Progressive Web App (PWA)** diseñada para ayudarte a eleg
 3. **Variables de entorno**:
    Copia el archivo `.env.example` a `.env` y configura tus credenciales:
    - `GEMINI_API_KEY`: Tu clave de Google AI Studio.
-   - `SUPABASE_URL` / `SUPABASE_KEY`: Tus credenciales de Supabase.
 
 4. **Ejecutar en desarrollo**:
    ```bash
