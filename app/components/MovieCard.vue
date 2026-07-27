@@ -6,17 +6,10 @@ const props = defineProps<{
   loading?: boolean
 }>()
 
-const handleAction = async (type: 'acceptance' | 'rejection') => {
+const handleAction = (type: 'acceptance' | 'rejection') => {
   try {
-    await $fetch('/api/history', {
-      method: 'POST',
-      body: {
-        deviceId: useDeviceId(),
-        action: type,
-        movie: props.movie
-      }
-    })
-
+    if (!props.movie) return
+    useMovieHistory().record(type, props.movie)
     alert(type === 'acceptance' ? '¡Guardada en tu historial!' : 'Entendido, buscaremos otra.')
   } catch (err) {
     console.error('Error saving action:', err)
